@@ -2,3 +2,9 @@
 @plugin "daisyui" {
   themes: emerald --default, dark --prefersdark, cupcake;
 }
+
+[data-theme="emerald"] {
+  .my-background {
+    background-color: #F5F7F9;
+  }
+}

@@ -31,7 +31,7 @@ export default function AuthForm() {
     <div>
       <form
         onSubmit={handleSubmit(login)}
-        className="shadow-[0_0_5px] rounded-box w-xs p-4 space-y-4"
+        className="shadow-[0_0_15px_rgba(0,0,0,0.1)] rounded-box w-xs p-6 space-y-4"
       >
         <div className=" space-y-2">
           <label className="label">Email</label>
