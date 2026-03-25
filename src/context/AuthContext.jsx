@@ -1,14 +1,18 @@
 import axios from "axios";
 import { createContext, useContext, useState } from "react";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext(null);
 
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(
     localStorage.getItem("currentUserEmail")
-      ? {email: localStorage.getItem("currentUserEmail")}
+      ? { email: localStorage.getItem("currentUserEmail") }
       : null,
   );
+
+  const navigate = useNavigate();
 
   const signup = async (userData) => {
     const data = {
@@ -25,13 +29,11 @@ export default function AuthProvider({ children }) {
       localStorage.setItem("currentUserEmail", userData.email);
       localStorage.setItem("token", res.data.access_token);
       setUser({ email: userData.email });
-      console.log(res);
-      alert("Signup successfull");
+      toast.success("Signup successfull");
+      navigate("/");
     } catch (e) {
-      console.log(e);
-      console.log(e.response.data);
-      alert("Signup failed");
-      console.error("Login Failed:", e.response?.data || e.message);
+      toast.error("Login failed! " + e.response?.data?.detail);
+      console.error("Login Failed:", e.response?.data?.detail || e.message);
     }
   };
 
@@ -49,11 +51,10 @@ export default function AuthProvider({ children }) {
       localStorage.setItem("currentUserEmail", userData.email);
       localStorage.setItem("token", res.data.access_token);
       setUser({ email: userData.email });
-      console.log(res);
-      alert("Login successfull");
+      toast.success("Login successfull");
+      navigate("/");
     } catch (e) {
-      console.log(e);
-      alert("Login failed");
+      toast.error("Login failed! " + e.response?.data?.detail);
       console.error("Login Failed:", e.response?.data || e.message);
     }
   };
