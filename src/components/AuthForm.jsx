@@ -2,7 +2,8 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
 import authentication from "../services/auth.service";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { MdAccountBalanceWallet } from "react-icons/md";
 
 export default function AuthForm({ pageType }) {
   const { login, signup, user, isAuthenticated } = useAuth();
@@ -27,10 +28,11 @@ export default function AuthForm({ pageType }) {
       login(user, res.data.access_token);
       toast.success("Login successfull", { duration: 1500 });
       navigate("/");
-
     } catch (e) {
       console.log(e.response);
-      toast.error("Login failed! " + e.response?.data?.detail || "Network Error");
+      toast.error(
+        "Login failed! " + e.response?.data?.detail || "Network Error",
+      );
       console.error("Login Failed: ", e.response?.data?.detail || e.message);
     }
   };
@@ -45,16 +47,17 @@ export default function AuthForm({ pageType }) {
     try {
       const res = await authentication.signup(userData);
       const user = { email: res.data.email, name: res.data.name };
-      console.log(res)
+      console.log(res);
       signup(user, res.data.access_token);
       toast.success("Signup successfull", { duration: 1500 });
 
       navigate("/");
-
     } catch (e) {
       console.log(e.response);
       console.log(e.message);
-      toast.error("Signup failed! " + e.response?.data?.detail || "Network Error");
+      toast.error(
+        "Signup failed! " + e.response?.data?.detail || "Network Error",
+      );
       console.error("Signup Failed: ", e.response?.data?.detail || e.message);
     }
   };
@@ -73,7 +76,7 @@ export default function AuthForm({ pageType }) {
             <input
               type="text"
               className="input bg-base-200/40"
-              placeholder="Name"
+              placeholder="User"
               {...register("name", {
                 required: "Name is required",
                 minLength: {
@@ -91,7 +94,7 @@ export default function AuthForm({ pageType }) {
           <input
             type="email"
             className="input bg-base-200/40"
-            placeholder="Email"
+            placeholder="user@gmail.com"
             {...register("email", {
               required: "Email is required",
               pattern: {
@@ -108,7 +111,7 @@ export default function AuthForm({ pageType }) {
           <input
             type="password"
             className="input bg-base-200/40"
-            placeholder="Password"
+            placeholder="............."
             {...register("password", {
               required: "Password is required",
               minLength: {
@@ -129,7 +132,26 @@ export default function AuthForm({ pageType }) {
         <button className="btn btn-secondary w-full text-white mt-4">
           {pageType == "signup" ? "Signup" : "Login"}
         </button>
+
+        
       </form>
+      <div className="mt-4">
+      {pageType == "login" ? (
+          <div className="text-center">
+            Don't have an account?{" "}
+            <Link to="/signup" className="text-blue-500 font-medium">
+              Signup
+            </Link>
+          </div>
+        ) : (
+          <div className="text-center">
+            Don't have an account?{" "}
+            <Link to="/login" className="text-blue-500 font-medium">
+              Login
+            </Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
