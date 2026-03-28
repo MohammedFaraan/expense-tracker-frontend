@@ -5,62 +5,56 @@ import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext(null);
 
+const getSavedToken = () => {
+  return localStorage.getItem("token");
+};
+const getSavedUser = () => {
+  try {
+    const saved = localStorage.getItem("user");
+    return saved ? JSON.parse(saved) : null;
+  } catch {
+    return null;
+  }
+};
+
 export default function AuthProvider({ children }) {
-  const [user, setUser] = useState(
-    localStorage.getItem("currentUserEmail")
-      ? { email: localStorage.getItem("currentUserEmail") }
-      : null,
+  const [user, setUser] = useState(getSavedUser);
+  const [token, setToken] = useState(getSavedToken);
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    () => !!getSavedUser() && getSavedToken(),
   );
 
-  const navigate = useNavigate();
+  const signup = (userData, tokenValue) => {
+    setUser(userData);
+    setToken(tokenValue);
+    setIsAuthenticated(true);
 
-  const signup = async (userData) => {
-    const data = {
-      name: userData.name,
-      email: userData.email,
-      password: userData.password,
-    };
-
-    try {
-      const res = await axios.post("http://localhost:8000/auth/signup", data, {
-        headers: { "Content-Type": "application/json" },
-      });
-
-      localStorage.setItem("currentUserEmail", userData.email);
-      localStorage.setItem("token", res.data.access_token);
-      setUser({ email: userData.email });
-      toast.success("Signup successfull");
-      navigate("/");
-    } catch (e) {
-      toast.error("Login failed! " + e.response?.data?.detail);
-      console.error("Login Failed:", e.response?.data?.detail || e.message);
-    }
+    localStorage.setItem("user", JSON.stringify(userData));
+    localStorage.setItem("token", JSON.stringify(tokenValue));
   };
 
-  const login = async (userData) => {
-    const data = {
-      username: userData.email,
-      password: userData.password,
-    };
+  const login = (userData, tokenValue) => {
+    setUser(userData);
+    setToken(tokenValue);
+    setIsAuthenticated(true);
 
-    try {
-      const res = await axios.post("http://localhost:8000/auth/login", data, {
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      });
+    localStorage.setItem("user", JSON.stringify(userData));
+    localStorage.setItem("token", JSON.stringify(tokenValue));
+  };
 
-      localStorage.setItem("currentUserEmail", userData.email);
-      localStorage.setItem("token", res.data.access_token);
-      setUser({ email: userData.email });
-      toast.success("Login successfull");
-      navigate("/");
-    } catch (e) {
-      toast.error("Login failed! " + e.response?.data?.detail);
-      console.error("Login Failed:", e.response?.data || e.message);
-    }
+  const logout = () => {
+    setUser(null);
+    setToken(null);
+    setIsAuthenticated(false);
+
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
   };
 
   return (
-    <AuthContext.Provider value={{ login, signup, user }}>
+    <AuthContext.Provider
+      value={{ login, signup, logout, user, token, isAuthenticated }}
+    >
       {children}
     </AuthContext.Provider>
   );

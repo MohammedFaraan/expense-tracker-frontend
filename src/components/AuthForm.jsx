@@ -1,10 +1,12 @@
 import { useForm } from "react-hook-form";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../context/AuthContext";
+import authentication from "../services/auth.service";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function AuthForm({ pageType }) {
-  const { login, signup, user } = useAuth();
-  // const pageType = useLocation().pathname.slice(1);
-  console.log(pageType);
+  const { login, signup, user, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   console.log(user);
   const {
@@ -13,18 +15,56 @@ export default function AuthForm({ pageType }) {
     formState: { errors },
   } = useForm();
 
-  const handleFormSubmit = (data) => {
-    if (pageType == "login") {
-      login(data);
-    } else {
-      signup(data);
+  const handleLogin = async (data) => {
+    const userData = {
+      username: data.email,
+      password: data.password,
+    };
+
+    try {
+      const res = await authentication.login(userData);
+      const user = { email: res.data.email, name: res.data.name };
+      login(user, res.data.access_token);
+      toast.success("Login successfull", { duration: 1500 });
+      navigate("/");
+
+    } catch (e) {
+      console.log(e.response);
+      toast.error("Login failed! " + e.response?.data?.detail || "Network Error");
+      console.error("Login Failed: ", e.response?.data?.detail || e.message);
+    }
+  };
+
+  const handleSignup = async (data) => {
+    const userData = {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    };
+
+    try {
+      const res = await authentication.signup(userData);
+      const user = { email: res.data.email, name: res.data.name };
+      console.log(res)
+      signup(user, res.data.access_token);
+      toast.success("Signup successfull", { duration: 1500 });
+
+      navigate("/");
+
+    } catch (e) {
+      console.log(e.response);
+      console.log(e.message);
+      toast.error("Signup failed! " + e.response?.data?.detail || "Network Error");
+      console.error("Signup Failed: ", e.response?.data?.detail || e.message);
     }
   };
 
   return (
     <div>
       <form
-        onSubmit={handleSubmit(handleFormSubmit)}
+        onSubmit={handleSubmit(
+          pageType == "login" ? handleLogin : handleSignup,
+        )}
         className="shadow-[0_0_15px_rgba(0,0,0,0.1)] rounded-box w-xs p-6 space-y-4"
       >
         {pageType == "signup" && (
@@ -40,7 +80,6 @@ export default function AuthForm({ pageType }) {
                   value: 3,
                   message: "Name length must be atleast 3",
                 },
-                
               })}
             />
             {errors.name && <p className="text-error">{errors.name.message}</p>}

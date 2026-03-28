@@ -1,15 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Login from "./components/pages/Login";
-import Signup from "./components/pages/Signup";
-import Navbar from "./components/common/Navbar";
-import Home from "./components/pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
 import {Toaster} from "react-hot-toast"
 
 function App() {
   return (
     <main className="min-h-screen my-background">
-      {/* <button className='btn btn-active'>Hello world</button> */}
       <Navbar />
       <div className="min-h-full">
         <Routes>

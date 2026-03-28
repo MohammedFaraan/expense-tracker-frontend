@@ -1,4 +1,4 @@
-import AuthForm from "../common/AuthForm";
+import AuthForm from "../components/AuthForm";
 
 function Signup() {
   return (

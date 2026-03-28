@@ -1,10 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 function Navbar() {
+  const { user, isAuthenticated, logout } = useAuth();
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  }
+
   return (
     <nav className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
-        <Link to="/" className="btn btn-ghost text-xl">Expense Tracker</Link>
+        <Link to="/" className="btn btn-ghost text-xl">
+          Finance Intel
+        </Link>
 
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -72,12 +84,18 @@ function Navbar() {
         </ul>
       </div>
       <div className="navbar-end space-x-2">
-        <Link to="/login" className="btn btn-secondary">
-          Login
-        </Link>
-        <Link to="/signup" className="btn btn-neutral">
-          Signup
-        </Link>
+        {isAuthenticated ? (
+          <button className="btn btn-error bg-red-600 text-white" onClick={handleLogout}>Logout</button>
+        ) : (
+          <>
+            <Link to="/login" className="btn ">
+              Login
+            </Link>
+            <Link to="/signup" className="btn btn-secondary">
+              Get Started
+            </Link>
+          </>
+        )}
       </div>
     </nav>
   );
