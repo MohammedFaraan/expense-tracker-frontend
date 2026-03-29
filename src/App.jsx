@@ -2,19 +2,48 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import {Toaster} from "react-hot-toast"
+import { Toaster } from "react-hot-toast";
+import PublicLayout from "./layoutes/PublicLayout";
+import PublicRoute from "./components/PublicRoute";
+import AppLayout from "./layoutes/AppLayout";
+import Dashboard from "./pages/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
     <main className="min-h-screen my-background">
-      <Navbar />
-      <div className="min-h-full">
+      <div className="min-h-full pt-16">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route element={<PublicLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute>
+                  <Login />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                <PublicRoute>
+                  <Signup />
+                </PublicRoute>
+              }
+            />
+          </Route>
+
+          <Route
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
         </Routes>
       </div>
       <Toaster />

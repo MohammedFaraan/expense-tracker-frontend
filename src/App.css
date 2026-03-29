@@ -8,3 +8,11 @@
     background-color: #F5F7F9;
   }
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 6rem;
+}
