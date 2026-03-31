@@ -3,7 +3,7 @@ import AuthForm from "../components/AuthForm";
 
 function Signup() {
   return (
-    <div className="flex align-middle justify-center">
+    <div className="flex align-middle justify-center pt-16">
       <div className="mx-5 my-10 space-y-5">
         <div className="w-7 rounded p-1 bg-blue-500 mx-auto">
           <MdAccountBalanceWallet className="text-white text-xl" />

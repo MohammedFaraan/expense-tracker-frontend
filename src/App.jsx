@@ -9,11 +9,12 @@ import PublicRoute from "./components/PublicRoute";
 import AppLayout from "./layoutes/AppLayout";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Expenses from "./pages/Expenses";
 
 function App() {
   return (
     <main className="min-h-screen my-background">
-      <div className="min-h-full pt-16">
+      <div className="min-h-full ">
         <Routes>
           <Route element={<PublicLayout />}>
             <Route path="/" element={<Home />} />
@@ -43,6 +44,7 @@ function App() {
             }
           >
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/expenses" element={<Expenses />} />
           </Route>
         </Routes>
       </div>

@@ -57,7 +57,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="space-y-24 ">
+    <div className="space-y-24 pt-16">
       <section
         id="home"
         className="scroll-mt-28 bg-base-200/70 px-6 py-16 lg:px-12"
