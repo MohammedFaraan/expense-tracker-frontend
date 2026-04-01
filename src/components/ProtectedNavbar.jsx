@@ -25,12 +25,12 @@ export default function ProtectedNavbar() {
           <path d="M14 10l2 2l-2 2"></path>
         </svg>
       </label>
-      <Link to="/dashboard" className="flex flex-row">
+      {/* <Link to="/dashboard" className="flex flex-row">
         <div className="w-7 rounded p-1 bg-blue-500 mx-auto">
           <MdAccountBalanceWallet className="text-white text-xl" />
         </div>
         <div className="px-2 text-black font-bold text-xl">Finance Intel</div>
-      </Link>
+      </Link> */}
     </nav>
   );
 }
