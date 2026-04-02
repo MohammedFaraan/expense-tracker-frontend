@@ -38,19 +38,31 @@ apiClient.interceptors.request.use((config) => {
   return config;
 });
 
+let logoutHandler = () => {
+  console.warn("No logout handler registered");
+};
+
+/**
+ * Allow AuthProvider to register its logout logic
+ */
+export function setLogoutHandler(handler) {
+  logoutHandler = handler;
+}
+
 /**
  * Normalize API errors
  */
 apiClient.interceptors.response.use(
   (response) => response.data,
   (error) => {
+    if (error.response && error.response.status == 401) {
+      logoutHandler();
+    }
     const message =
-      error.response?.data?.message ||
-      error.message ||
-      "API request failed";
+      error.response?.data?.message || error.message || "API request failed";
 
     return Promise.reject(new Error(message));
-  }
+  },
 );
 
 const api = {

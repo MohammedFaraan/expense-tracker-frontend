@@ -5,7 +5,7 @@ function Expenses() {
   
   const fetchExpenses = async () => {
     try {
-      const data = api.get("/expenses");
+      const data = await api.get("/expenses");
       console.log(data);
     } catch(err) {
 

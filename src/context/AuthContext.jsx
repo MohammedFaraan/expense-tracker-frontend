@@ -1,13 +1,15 @@
 import axios from "axios";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { setLogoutHandler, setTokenProvider } from "../api/client";
 
 const AuthContext = createContext(null);
 
 const getSavedToken = () => {
   return localStorage.getItem("token");
 };
+
 const getSavedUser = () => {
   try {
     const saved = localStorage.getItem("user");
@@ -24,13 +26,23 @@ export default function AuthProvider({ children }) {
     () => !!getSavedUser() && getSavedToken(),
   );
 
+  // Providing latest token to api client directly through state
+  useEffect(() => {
+    setTokenProvider(() => token);
+  }, [token]);
+
+  // Triggers logout when token expires in api client
+  useEffect(() => {
+    setLogoutHandler(logout);
+  }, [logout]);
+
   const signup = (userData, tokenValue) => {
     setUser(userData);
     setToken(tokenValue);
     setIsAuthenticated(true);
 
     localStorage.setItem("user", JSON.stringify(userData));
-    localStorage.setItem("token", JSON.stringify(tokenValue));
+    localStorage.setItem("token", tokenValue);
   };
 
   const login = (userData, tokenValue) => {
@@ -39,7 +51,7 @@ export default function AuthProvider({ children }) {
     setIsAuthenticated(true);
 
     localStorage.setItem("user", JSON.stringify(userData));
-    localStorage.setItem("token", JSON.stringify(tokenValue));
+    localStorage.setItem("token", tokenValue);
   };
 
   const logout = () => {

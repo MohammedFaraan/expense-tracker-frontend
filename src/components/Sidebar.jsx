@@ -14,7 +14,7 @@ export default function Sidebar() {
 
       <ul className="menu w-full grow">
         {/* List item */}
-        <li className="pb-2">
+        <li className="pb-2 border-b-2 border-b-base-300 w-full">
           <Link
             to="/"
             className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
@@ -28,7 +28,7 @@ export default function Sidebar() {
           </Link>
         </li>
        
-        <li className="border-t border-base-400">
+        <li className="">
           <Link
             to="/dashboard"
             className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
