@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../api/client";
 import ExpenseModel from "../components/ExpenseModal";
+import toast from "react-hot-toast";
 
 function Expenses() {
   const [expenses, setExpenses] = useState([]);
@@ -11,8 +12,9 @@ function Expenses() {
     try {
       const data = await api.get("/expenses");
       setExpenses(data);
-      // console.log(data);
-    } catch (err) {}
+    } catch (e) {
+      toast.error(e.message || "Network error")
+    }
   };
 
   useEffect(() => {
@@ -33,15 +35,15 @@ function Expenses() {
   return (
     <div className="flex flex-col gap-10 mx-auto py-6 w-[95%]">
       <h1 className="text-2xl font-bold">All Expenses</h1>
-      <div className="flex-row">
-        <select defaultValue="Pick a color" className="select">
-          <option disabled={true}>All Categories</option>
+      <div className="grid grid-cols-2 gap-40 md:gap-80 w-full">
+        <select defaultValue="Pick a color" className="select w-full">
+          <option disabled={true} selected>All Categories</option>
           <option>Crimson</option>
           <option>Amber</option>
           <option>Velvet</option>
         </select>
-        <select defaultValue="Pick a color" className="select">
-          <option disabled={true}>Month</option>
+        <select defaultValue="Pick a color" className="select w-full">
+          <option disabled={true} selected>Month</option>
           <option>Crimson</option>
           <option>Amber</option>
           <option>Velvet</option>
@@ -78,7 +80,7 @@ function Expenses() {
           </tbody>
         </table>
       </div>
-      <ExpenseModel isOpen={isModalOpen} onClose={closeModal} expense={selectedExpense}/>
+      <ExpenseModel isOpen={isModalOpen} onClose={closeModal} expense={selectedExpense} setExpense={setSelectedExpense} fetchExpenses={fetchExpenses}/>
     </div>
   );
 }
