@@ -34,7 +34,7 @@ export default function AuthProvider({ children }) {
   // Triggers logout when token expires in api client
   useEffect(() => {
     setLogoutHandler(logout);
-  }, [logout]);
+  }, []);
 
   const signup = (userData, tokenValue) => {
     setUser(userData);

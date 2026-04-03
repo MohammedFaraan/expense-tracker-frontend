@@ -1,9 +1,12 @@
 import { MdAccountBalanceWallet } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function ProtectedNavbar() {
+  const {user} = useAuth();
+
   return (
-    <nav className="navbar w-full border-b border-base-300 bg-base-100/90  backdrop-blur">
+    <nav className="navbar w-full justify-between border-b border-base-300 bg-base-100/90  backdrop-blur">
       <label
         htmlFor="my-drawer-4"
         aria-label="open sidebar"
@@ -25,6 +28,9 @@ export default function ProtectedNavbar() {
           <path d="M14 10l2 2l-2 2"></path>
         </svg>
       </label>
+      <div className="px-2 btn btn-ghost font-bold text-xl">
+        <span >Welcome back, {user?.name}!</span>
+      </div>
       {/* <Link to="/dashboard" className="flex flex-row">
         <div className="w-7 rounded p-1 bg-blue-500 mx-auto">
           <MdAccountBalanceWallet className="text-white text-xl" />

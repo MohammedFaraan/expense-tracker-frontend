@@ -89,7 +89,7 @@ export default function AuthForm({ pageType }) {
           </div>
         )}
 
-        <div className=" space-y-2">
+        <div className="space-y-2">
           <label className="label">Email</label>
           <input
             type="email"
