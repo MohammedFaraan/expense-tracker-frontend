@@ -1,11 +1,10 @@
 import { useState } from "react";
-import api from "../api/client";
 import toast from "react-hot-toast";
 
 export default function ExpenseModel({
   expense,
   setExpense,
-  fetchExpenses,
+  updateExpense,
   isOpen,
   onClose,
 }) {
@@ -17,31 +16,30 @@ export default function ExpenseModel({
     onClose?.();
   };
 
-  const handleEditSave = () => {
+  const handleEditSave = async () => {
     if (!isEditing) {
       setIsEditing(true);
     } else {
-      updateExpense();
-      fetchExpenses();
-      setIsEditing(false);
+      handleExpenseUpdate();
     }
   };
 
-  const updateExpense = async () => {
+  const handleExpenseUpdate = async () => {
     try {
-      const payload = {
+      const data = {
         amount: expense.amount,
         description: expense.description,
         category: expense.category,
         date: expense.date,
       };
-      console.log(payload);
-      const data = await api.put(`/expenses/${expense.id}`, payload);
-      console.log(data);
+      const res = await updateExpense({ id: expense?.id, data });
+      setExpense(res);
       toast.success("Expense updated!");
+      setIsEditing(false);
     } catch (e) {
+      console.log(e)
       toast.error("Update failed! " + e.message || "Network Error");
-      console.error("Update Failed: ", e.response?.data?.detail || e.message);
+      console.error("Update Failed: ", e.message || "Network Error");
     }
   };
 
@@ -62,7 +60,7 @@ export default function ExpenseModel({
           </button>
         </div>
 
-        <form className="py-4  space-y-4">
+        <form className="py-4 space-y-4">
           <div className="space-y-2">
             <label className="block text-sm font-medium text-base-content/70">
               Description
@@ -96,7 +94,7 @@ export default function ExpenseModel({
         <div className="modal-action w-full grid grid-cols-2 gap-20">
           <button className="btn btn-outline btn-error">Delete</button>
 
-          <button className="btn btn-secondary" onClick={handleEditSave}>
+          <button type="button" className="btn btn-secondary" onClick={handleEditSave}>
             {isEditing ? "Save" : "Edit"}
           </button>
           {/* <button className="btn btn-secondary" onClick={handleClose}>

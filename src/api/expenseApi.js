@@ -11,7 +11,7 @@ export const addExpense = (data) => {
 };
 
 // UPDATE expense
-export const updateExpense = (id, data) => {
+export const updateExpense = ({id, data}) => {
     return api.put(`/expenses/${id}`, data);
 };
 

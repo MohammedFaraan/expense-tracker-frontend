@@ -59,7 +59,9 @@ apiClient.interceptors.response.use(
       logoutHandler();
     }
     const message =
-      error.response?.data?.message || error.message || "API request failed";
+      error.response?.data?.detail[0]?.msg ||
+      error.message ||
+      "API request failed";
 
     return Promise.reject(new Error(message));
   },

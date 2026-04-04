@@ -41,6 +41,6 @@ export const useExpenses = () => {
 
     addExpense: addMutation.mutate,
     deleteExpense: deleteMutation.mutate,
-    updateExpense: updateMutation.mutate,
+    updateExpense: updateMutation.mutateAsync,
   };
 };
