@@ -3,13 +3,11 @@ import { useAuth } from "../context/AuthContext";
 import authentication from "../services/auth.service";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import { MdAccountBalanceWallet } from "react-icons/md";
 
 export default function AuthForm({ pageType }) {
-  const { login, signup, user, isAuthenticated } = useAuth();
+  const { login, signup } = useAuth();
   const navigate = useNavigate();
 
-  console.log(user);
   const {
     register,
     handleSubmit,
@@ -131,11 +129,9 @@ export default function AuthForm({ pageType }) {
         <button className="btn btn-secondary w-full text-white mt-4">
           {pageType == "signup" ? "Signup" : "Login"}
         </button>
-
-        
       </form>
       <div className="mt-4">
-      {pageType == "login" ? (
+        {pageType == "login" ? (
           <div className="text-center">
             Don't have an account?{" "}
             <Link to="/signup" className="text-blue-500 font-medium">

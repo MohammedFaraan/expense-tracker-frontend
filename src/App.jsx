@@ -10,6 +10,7 @@ import AppLayout from "./layoutes/AppLayout";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Expenses from "./pages/Expenses";
+import CreateExpense from "./pages/CreateExpense";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           >
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/expenses" element={<Expenses />} />
+            <Route path="/expenses/create" element={<CreateExpense />} />
           </Route>
         </Routes>
       </div>

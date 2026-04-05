@@ -1,18 +1,23 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useExpenses } from "../hooks/useExpenses";
 
 export default function ExpenseModel({
   expense,
   setExpense,
   updateExpense,
+  deleteExpense,
   isOpen,
   onClose,
 }) {
   const [isEditing, setIsEditing] = useState(false);
+  const navigate = useNavigate();
 
   if (!isOpen) return null;
 
   const handleClose = () => {
+    setIsEditing(false);
     onClose?.();
   };
 
@@ -37,9 +42,21 @@ export default function ExpenseModel({
       toast.success("Expense updated!");
       setIsEditing(false);
     } catch (e) {
-      console.log(e)
       toast.error("Update failed! " + e.message || "Network Error");
       console.error("Update Failed: ", e.message || "Network Error");
+    }
+  };
+
+  const handleExpenseDelete = () => {
+    try {
+      deleteExpense(expense?.id);
+      onClose?.();
+      setExpense(null);
+      toast.success("Expense Deleted!");
+      navigate("/expenses");
+    } catch (e) {
+      toast.error("Delete failed! " + e.message || "Network Error");
+      console.error("Delte Failed: ", e.message || "Network Error");
     }
   };
 
@@ -67,7 +84,7 @@ export default function ExpenseModel({
             </label>
             <textarea
               rows={2}
-              className="textarea textarea-bordered w-full bg-base-200/40 leading-relaxed"
+              className={`textarea textarea-bordered w-full ${isEditing ? "bg-base-200/40" : "bg-base-200/60"} leading-relaxed`}
               value={expense?.description ?? ""}
               onChange={(e) =>
                 setExpense({ ...expense, description: e.target.value })
@@ -81,7 +98,7 @@ export default function ExpenseModel({
             </label>
             <input
               type="number"
-              className="input bg-base-200/40 w-full"
+              className={`input ${isEditing ? "bg-base-200/40" : "bg-base-200/60"} w-full`}
               value={expense?.amount ?? ""}
               onChange={(e) =>
                 setExpense({ ...expense, amount: parseInt(e.target.value, 10) })
@@ -92,21 +109,22 @@ export default function ExpenseModel({
         </form>
 
         <div className="modal-action w-full grid grid-cols-2 gap-20">
-          <button className="btn btn-outline btn-error">Delete</button>
+          <button
+            className="btn btn-outline btn-error"
+            onClick={handleExpenseDelete}
+          >
+            Delete
+          </button>
 
-          <button type="button" className="btn btn-secondary" onClick={handleEditSave}>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={handleEditSave}
+          >
             {isEditing ? "Save" : "Edit"}
           </button>
-          {/* <button className="btn btn-secondary" onClick={handleClose}>
-              Close
-            </button> */}
         </div>
       </div>
-
-      {/* Clicking the dark backdrop also closes and syncs state */}
-      <form method="dialog" className="modal-backdrop" onClick={handleClose}>
-        <button aria-label="close" />
-      </form>
     </dialog>
   );
 }

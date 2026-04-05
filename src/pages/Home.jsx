@@ -73,19 +73,19 @@ function Home() {
               Minimal expense tracking for clarity, beauty, and confidence.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Link to="/signup" className="btn btn-secondary text-white">
+              <Link to="/dashboard" className="btn btn-secondary text-white">
                 Get Started
               </Link>
-              <a href="#dashboard" className="btn btn-soft">
+              {/* <a href="#dashboard" className="btn btn-soft">
                 View Demo
-              </a>
+              </a> */}
             </div>
           </div>
 
-          <div className="mx-auto w-full max-w-[560px] [perspective:1400px]">
+          <div className="mx-auto w-full max-w-140 perspective-[1400px]">
             <div className="relative transform-gpu">
-              <div className="absolute -inset-2 rounded-[2rem] bg-black/10 blur-xl" />
-              <div className="relative rounded-[1.8rem] bg-base-100 p-3 ring-1 ring-black/5 shadow-[0_24px_60px_rgba(8,12,26,0.24)] transition-transform duration-500 md:[transform:rotate(1.2deg)] lg:[transform:rotate(2deg)_skewY(0.3deg)]">
+              <div className="absolute -inset-2 rounded-4xl bg-black/10 blur-xl" />
+              <div className="relative rounded-[1.8rem] bg-base-100 p-3 ring-1 ring-black/5 shadow-[0_24px_60px_rgba(8,12,26,0.24)] hover:shadow-[0_24px_60px_rgba(8,12,26,0.5)] transition-transform duration-500 md:[transform:rotate(1.2deg)] lg:[transform:rotate(2deg)_skewY(0.3deg)]">
                 <div className="relative overflow-hidden rounded-[1.35rem] bg-[#031220]">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#123451_0%,#081826_45%,#020914_100%)]" />
                   <img
@@ -117,7 +117,7 @@ function Home() {
               return (
                 <article
                   key={item.title}
-                  className="card bg-base-100 shadow-sm"
+                  className="card bg-base-100 shadow-sm hover:shadow-lg"
                 >
                   <div className="card-body text-left">
                     {Icon && (
@@ -248,7 +248,7 @@ function Home() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link to="/signup" className="btn btn-secondary text-white">
-              Get Started Now
+              Signup
             </Link>
             <Link
               to="/login"
