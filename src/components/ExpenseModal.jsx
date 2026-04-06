@@ -1,7 +1,8 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { Navigate, useNavigate } from "react-router-dom";
-import { useExpenses } from "../hooks/useExpenses";
+import { useNavigate } from "react-router-dom";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { LuPencil } from "react-icons/lu";
 
 export default function ExpenseModel({
   expense,
@@ -108,11 +109,13 @@ export default function ExpenseModel({
           </div>
         </form>
 
-        <div className="modal-action w-full grid grid-cols-2 gap-20">
+        <div className="modal-action w-full grid grid-cols-2 gap-10 md:gap-20">
           <button
             className="btn btn-outline btn-error"
             onClick={handleExpenseDelete}
           >
+            <RiDeleteBin6Line />
+
             Delete
           </button>
 
@@ -121,6 +124,8 @@ export default function ExpenseModel({
             className="btn btn-secondary"
             onClick={handleEditSave}
           >
+            <LuPencil />
+
             {isEditing ? "Save" : "Edit"}
           </button>
         </div>

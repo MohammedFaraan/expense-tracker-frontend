@@ -3,6 +3,7 @@ import {
   addExpense,
   deleteExpense,
   getExpenses,
+  getExpensesByYearMonth,
   updateExpense,
 } from "../api/expenseApi";
 
@@ -35,10 +36,9 @@ export const useExpenses = () => {
   });
 
   return {
-    expenses: query.data || [],
+    allExpenses: query.data || [],
     isLoading: query.isLoading,
     isError: query.isError,
-
     addExpense: addMutation.mutate,
     deleteExpense: deleteMutation.mutate,
     updateExpense: updateMutation.mutateAsync,
