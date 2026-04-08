@@ -5,9 +5,14 @@ export const getExpenses = () => {
   return api.get("/expenses");
 };
 
-// GET all expenses
+// GET expenses by year and month
 export const getExpensesByYearMonth = ({ year, month }) => {
   return api.get(`/expenses/filter_by_month_year?year=${year}&month=${month}`);
+};
+
+// GET expenses stats
+export const getExpenseStats = () => {
+  return api.get("/expenses/stats/");
 };
 
 // ADD expense

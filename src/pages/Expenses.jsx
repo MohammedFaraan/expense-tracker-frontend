@@ -7,10 +7,12 @@ import { FaPlus } from "react-icons/fa6";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { useQuery } from "@tanstack/react-query";
 import { getExpensesByYearMonth } from "../api/expenseApi";
+import { useExpensesStats } from "../hooks/useExpensesStats";
 
 function Expenses() {
   const { allExpenses, isAllLoading, updateExpense, deleteExpense } =
     useExpenses();
+  const { data: expenseStats } = useExpensesStats();
   const [selectedExpense, setSelectedExpense] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dateFilter, setDateFilter] = useState({ year: null, month: null });
@@ -34,13 +36,13 @@ function Expenses() {
     setIsModalOpen(true);
     setSelectedExpense(expense);
   };
+
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedExpense(null);
   };
 
   const handleYearMonthSelect = (e) => {
-    console.log(e.target.value);
     const val = e.target.value;
     if (val) {
       const [year, month] = val.split("-");
@@ -59,6 +61,21 @@ function Expenses() {
   return (
     <div className="flex flex-col gap-10 mx-auto py-6 w-[95%]">
       <h1 className="text-2xl font-bold">All Expenses</h1>
+      <div className="grid grid-cols-2 gap-4 md:gap-8">
+        <div className="bg-base-200/50 p-3 rounded-box shadow-sm space-y-2">
+          <h3 className="text">Total Spent</h3>
+          <p className="text-2xl font-bold">
+            {expenseStats && `₹${expenseStats.total}`}
+          </p>
+        </div>
+        <div className="bg-secondary text-white p-3 rounded-box shadow-sm space-y-2">
+          <h3 className="text">Top Category</h3>
+          <p className="text-2xl font-bold capitalize">
+            {expenseStats &&
+              `${expenseStats.highestCategory} (₹${expenseStats.highestCategoryAmount})`}
+          </p>
+        </div>
+      </div>
       <div className="flex flex-wrap items-center justify-between bg-base-200/50 p-3 rounded-box shadow-sm w-full gap-4">
         <div className="flex flex-row gap-2">
           <input

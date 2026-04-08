@@ -16,7 +16,6 @@ function CreateExpense() {
 
   const handleAddExpense = (expenseData) => {
     try {
-      console.log(expenseData);
       const data = {
         ...expenseData,
       };

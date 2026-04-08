@@ -3,7 +3,6 @@ import {
   addExpense,
   deleteExpense,
   getExpenses,
-  getExpensesByYearMonth,
   updateExpense,
 } from "../api/expenseApi";
 
@@ -18,20 +17,20 @@ export const useExpenses = () => {
   const addMutation = useMutation({
     mutationFn: addExpense,
     onSuccess: () => {
-      queryClient.invalidateQueries(["expenses"]);
+      queryClient.invalidateQueries(["expenses", "expense-stats"]);
     },
   });
 
   const deleteMutation = useMutation({
     mutationFn: deleteExpense,
     onSuccess: () => {
-      queryClient.invalidateQueries(["expenses"]);
+      queryClient.invalidateQueries(["expenses", "expense-stats"]);
     },
   });
   const updateMutation = useMutation({
     mutationFn: updateExpense,
     onSuccess: () => {
-      queryClient.invalidateQueries(["expenses"]);
+      queryClient.invalidateQueries(["expenses", "expense-stats"]);
     },
   });
 

@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { LuPencil } from "react-icons/lu";
+import { EXPENSE_CATEGORIES } from "../config/expenseCategories";
 
 export default function ExpenseModel({
   expense,
@@ -61,6 +62,10 @@ export default function ExpenseModel({
     }
   };
 
+  const getCategory = (categoryId) =>
+    EXPENSE_CATEGORIES.filter((c) => c.id == categoryId)[0];
+
+  const category = getCategory(expense?.category);
   return (
     <dialog open onClose={handleClose} className="modal">
       <div className="modal-box max-w-[60%]">
@@ -68,7 +73,11 @@ export default function ExpenseModel({
           <h3 className="font-bold text-xl">Expense Details</h3>
           <p>
             <span>{expense?.date} · </span>
-            <span>{expense?.category}</span>
+            <span
+              className={`rounded-full px-3 py-1 text-xs font-medium text-white ${category?.color}`}
+            >
+              {category?.label}
+            </span>
           </p>
           <button
             className="btn btn-lg btn-circle btn-ghost absolute right-2 top-2"
@@ -115,7 +124,6 @@ export default function ExpenseModel({
             onClick={handleExpenseDelete}
           >
             <RiDeleteBin6Line />
-
             Delete
           </button>
 
