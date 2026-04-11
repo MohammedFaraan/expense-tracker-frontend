@@ -1,8 +1,10 @@
 import api from "./client";
 
 // GET all expenses
-export const getExpenses = () => {
-  return api.get("/expenses");
+export const getExpenses = (limit) => {
+  return api.get("/expenses", {
+    params: { limit } // If limit is undefined, Axios won't even add it to the URL
+  });
 };
 
 // GET expenses by year and month

@@ -46,7 +46,7 @@ export default function CategoryPieChart({ data }) {
   );
 
   return (
-    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 w-full h-full flex flex-col">
+    <div className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 w-full h-full flex flex-col">
       <h3 className="text-lg font-bold mb-2 text-gray-800">
         Category Distribution
       </h3>
@@ -78,7 +78,7 @@ export default function CategoryPieChart({ data }) {
                   backgroundColor: `hsl(${(index * 60) % 360}, 70%, 50%)`,
                 }}
               />
-              <span className="capitalize text-gray-600 truncate max-w-[120px]">
+              <span className="capitalize text-gray-600 truncate max-w-30">
                 {item.id}
               </span>
             </div>

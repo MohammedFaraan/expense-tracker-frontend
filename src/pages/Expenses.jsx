@@ -11,8 +11,13 @@ import { useExpensesStats } from "../hooks/useExpensesStats";
 import SummarySection from "../components/SummarySection";
 
 function Expenses() {
-  const { allExpenses, isAllLoading, updateExpense, deleteExpense } =
-    useExpenses();
+  const {
+    expenses: allExpenses,
+    isLoading,
+    isError,
+    updateExpense,
+    deleteExpense,
+  } = useExpenses();
   const { data: expenseStats } = useExpensesStats();
   const [selectedExpense, setSelectedExpense] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,7 +30,6 @@ function Expenses() {
     enabled: !!dateFilter.year && !!dateFilter.month,
   });
 
-  console.log(allExpenses)
   const displayExpenses =
     !!dateFilter.year && !!dateFilter.month
       ? (filteredExpenses ?? []) // If filtering, use results or empty array
@@ -52,7 +56,7 @@ function Expenses() {
     }
   };
 
-  if (isAllLoading || isFilteredLoading) {
+  if (isLoading || isFilteredLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
         <span className="loading loading-infinity text-info w-24"></span>
@@ -63,7 +67,7 @@ function Expenses() {
   return (
     <div className="flex flex-col gap-10 mx-auto py-6 w-[95%]">
       <h1 className="text-4xl font-bold">All Expenses</h1>
-      <SummarySection expenseStats={expenseStats}/>
+      <SummarySection expenseStats={expenseStats} />
       <div className="flex flex-wrap items-center justify-between bg-base-200/50 p-3 rounded-box shadow-sm w-full gap-4">
         <div className="flex flex-row gap-2">
           <input

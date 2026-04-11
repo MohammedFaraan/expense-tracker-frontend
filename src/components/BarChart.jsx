@@ -19,7 +19,7 @@ export default function BarChart({ data }) {
   }, [data]);
 
   return (
-    <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 w-full h-full">
+    <div className="bg-white p-4 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 w-full h-full">
       <h3 className="text-lg font-bold mb-4 text-gray-800 text-left">Monthly Expenses</h3>
 
       <div className="h-87.5 sm:h-100 w-full ">

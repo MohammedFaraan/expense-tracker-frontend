@@ -6,12 +6,12 @@ import {
   updateExpense,
 } from "../api/expenseApi";
 
-export const useExpenses = () => {
+export const useExpenses = (limit) => {
   const queryClient = useQueryClient();
 
   const query = useQuery({
-    queryKey: ["expenses"],
-    queryFn: getExpenses,
+    queryKey: limit ? ["expenses", { limit }] : ["expenses"],
+    queryFn: () => getExpenses(limit),
   });
 
   const addMutation = useMutation({
@@ -35,7 +35,7 @@ export const useExpenses = () => {
   });
 
   return {
-    allExpenses: query.data || [],
+    expenses: query.data || [],
     isLoading: query.isLoading,
     isError: query.isError,
     addExpense: addMutation.mutate,

@@ -1,14 +1,15 @@
 import BarChart from "../components/BarChart";
 import CategoryPieChart from "../components/CategoryPieChart";
+import RecentExpenses from "../components/RecentExpenses";
 import SummarySection from "../components/SummarySection";
 import { useExpenses } from "../hooks/useExpenses";
 import { useExpensesStats } from "../hooks/useExpensesStats";
 
 function Dashboard() {
-  const { allExpenses, isAllLoading } = useExpenses();
+  const { expenses, isLoading } = useExpenses();
   const { data: expenseStats } = useExpensesStats();
 
-  if (isAllLoading) {
+  if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
         <span className="loading loading-infinity text-info w-24"></span>
@@ -22,14 +23,15 @@ function Dashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full p-4 bg-gray-50">
         {/* Bar Chart: Spans 2 columns on large screens */}
         <div className="lg:col-span-2">
-          <BarChart data={allExpenses} />
+          <BarChart data={expenses} />
         </div>
 
         {/* Pie Chart: Spans 1 column on large screens */}
         <div className="lg:col-span-1">
-          <CategoryPieChart data={allExpenses} />
+          <CategoryPieChart data={expenses} />
         </div>
       </div>
+      <RecentExpenses/>
     </div>
   );
 }

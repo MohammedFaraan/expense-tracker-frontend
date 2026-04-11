@@ -1,24 +1,52 @@
 export default function SummarySection({ expenseStats }) {
+  // Fallback values to prevent layout shift or empty boxes
+  const total = expenseStats?.total?.toLocaleString("en-IN") || "0";
+  const topCat = expenseStats?.highestCategory || "N/A";
+  const topCatAmt =
+    expenseStats?.highestCategoryAmount?.toLocaleString("en-IN") || "0";
+
   return (
-    <div className="grid grid-cols-3 gap-3">
-      <div className="p-4 rounded-box shadow-sm space-y-2">
-        <p className="text-gray-400 text-sm font-medium">TOTAL SPENT</p>
-        <p className="text-lg font-bold">
-          {expenseStats && `₹${expenseStats.total}`}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      {/* Total Spent Card */}
+      <div className="bg-white p-5 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 flex flex-col justify-between">
+        <p className="text-gray-500 text-xs font-bold uppercase tracking-wider">
+          Total Spent
         </p>
+        <div className="mt-2">
+          <span className="text-2xl font-black text-gray-900">₹{total}</span>
+          <p className="text-xs text-green-500 font-medium mt-1">
+            ↑ 12% from last month
+          </p>
+        </div>
       </div>
-      <div className="p-4 rounded-box shadow-sm space-y-2">
-        <p className="text-gray-400 text-sm font-medium">BUDGET</p>
-        <p className="text-lg font-bold">₹10000</p>
+
+      {/* Budget Card */}
+      <div className="bg-white p-5 rounded-2xl shadow-sm hover:shadow-md border border-gray-100 flex flex-col justify-between">
+        <p className="text-gray-500 text-xs font-bold uppercase tracking-wider">
+          Monthly Budget
+        </p>
+        <div className="mt-2">
+          <span className="text-2xl font-black text-gray-900">₹10,000</span>
+          <div className="w-full bg-gray-100 h-1.5 rounded-full mt-3">
+            <div
+              className="bg-indigo-500 h-1.5 rounded-full"
+              style={{ width: "75%" }}
+            ></div>
+          </div>
+        </div>
       </div>
-      <div className="bg-secondary text-white p-4 rounded-box shadow-sm space-y-2">
-        <p className="font-medium text-sm">TOP CATEGORY</p>
-        <p className="text-lg font-bold capitalize">
-          {expenseStats && `${expenseStats.highestCategory}`}
+
+      {/* Top Category Card - Highlighted */}
+      <div className="bg-indigo-600 p-5 rounded-2xl shadow-md hover:shadow-lg text-white flex flex-col justify-between">
+        <p className="text-indigo-100 text-xs font-bold uppercase tracking-wider">
+          Top Category
         </p>
-        <p className="font-medium">
-          {expenseStats && `₹${expenseStats.highestCategoryAmount}`}
-        </p>
+        <div className="mt-2">
+          <span className="text-2xl font-black capitalize">{topCat}</span>
+          <p className="text-sm text-indigo-100 mt-1 opacity-90">
+            Total: <span className="font-bold text-white">₹{topCatAmt}</span>
+          </p>
+        </div>
       </div>
     </div>
   );
