@@ -8,6 +8,7 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { useQuery } from "@tanstack/react-query";
 import { getExpensesByYearMonth } from "../api/expenseApi";
 import { useExpensesStats } from "../hooks/useExpensesStats";
+import SummarySection from "../components/SummarySection";
 
 function Expenses() {
   const { allExpenses, isAllLoading, updateExpense, deleteExpense } =
@@ -24,6 +25,7 @@ function Expenses() {
     enabled: !!dateFilter.year && !!dateFilter.month,
   });
 
+  console.log(allExpenses)
   const displayExpenses =
     !!dateFilter.year && !!dateFilter.month
       ? (filteredExpenses ?? []) // If filtering, use results or empty array
@@ -60,22 +62,8 @@ function Expenses() {
 
   return (
     <div className="flex flex-col gap-10 mx-auto py-6 w-[95%]">
-      <h1 className="text-2xl font-bold">All Expenses</h1>
-      <div className="grid grid-cols-2 gap-4 md:gap-8">
-        <div className="bg-base-200/50 p-3 rounded-box shadow-sm space-y-2">
-          <h3 className="text">Total Spent</h3>
-          <p className="text-2xl font-bold">
-            {expenseStats && `₹${expenseStats.total}`}
-          </p>
-        </div>
-        <div className="bg-secondary text-white p-3 rounded-box shadow-sm space-y-2">
-          <h3 className="text">Top Category</h3>
-          <p className="text-2xl font-bold capitalize">
-            {expenseStats &&
-              `${expenseStats.highestCategory} (₹${expenseStats.highestCategoryAmount})`}
-          </p>
-        </div>
-      </div>
+      <h1 className="text-4xl font-bold">All Expenses</h1>
+      <SummarySection expenseStats={expenseStats}/>
       <div className="flex flex-wrap items-center justify-between bg-base-200/50 p-3 rounded-box shadow-sm w-full gap-4">
         <div className="flex flex-row gap-2">
           <input
