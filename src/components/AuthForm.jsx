@@ -44,14 +44,11 @@ export default function AuthForm({ pageType }) {
     try {
       const res = await authentication.signup(userData);
       const user = { email: res.data.email, name: res.data.name };
-      console.log(res);
       signup(user, res.data.access_token);
       toast.success("Signup successfull", { duration: 1500 });
 
       navigate("/");
     } catch (e) {
-      console.log(e.response);
-      console.log(e.message);
       toast.error(
         "Signup failed! " + e.response?.data?.detail || "Network Error",
       );

@@ -34,7 +34,7 @@ function PublicNavbar() {
       target.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
-  console.log(isAuthenticated);
+  
   return (
     <nav className="navbar fixed top-0 z-50 w-full border-b border-base-300 bg-base-100/90 px-4 lg:px-10 backdrop-blur">
       <div className="navbar-start">

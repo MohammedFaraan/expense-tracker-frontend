@@ -14,7 +14,6 @@ function Expenses() {
   const {
     expenses: allExpenses,
     isLoading,
-    isError,
     updateExpense,
     deleteExpense,
   } = useExpenses();

@@ -1,6 +1,5 @@
-import { MdAccountBalanceWallet } from "react-icons/md";
-import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { FaRegUserCircle } from "react-icons/fa";
 
 export default function ProtectedNavbar() {
   const {user} = useAuth();
@@ -28,8 +27,12 @@ export default function ProtectedNavbar() {
           <path d="M14 10l2 2l-2 2"></path>
         </svg>
       </label>
-      <div className="px-2 btn btn-ghost font-bold text-xl">
+      <div className="flex items-center">
+        <div className="px-2 btn btn-ghost font-bold text-xl">
         <span >Welcome back, {user?.name}!</span>
+      </div>
+      <FaRegUserCircle />
+
       </div>
       {/* <Link to="/dashboard" className="flex flex-row">
         <div className="w-7 rounded p-1 bg-blue-500 mx-auto">

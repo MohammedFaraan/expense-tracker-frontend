@@ -19,19 +19,22 @@ function Dashboard() {
   return (
     <div className="flex flex-col gap-10 mx-auto py-6 w-[95%]">
       <h1 className="text-4xl font-bold">Dashboard</h1>
-      <SummarySection expenseStats={expenseStats} />
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full">
-        {/* Bar Chart: Spans 2 columns on large screens */}
-        <div className="lg:col-span-2">
-          <BarChart data={expenses} />
-        </div>
 
-        {/* Pie Chart: Spans 1 column on large screens */}
-        <div className="lg:col-span-1">
-          <CategoryPieChart data={expenses} />
+      <SummarySection expenseStats={expenseStats} />
+      {expenses && (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full">
+          {/* Bar Chart: Spans 2 columns on large screens */}
+          <div className="lg:col-span-2">
+            <BarChart data={expenses} />
+          </div>
+
+          {/* Pie Chart: Spans 1 column on large screens */}
+          <div className="lg:col-span-1">
+            <CategoryPieChart data={expenses} />
+          </div>
         </div>
-      </div>
-      <RecentExpenses/>
+      )}
+      <RecentExpenses />
     </div>
   );
 }
