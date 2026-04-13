@@ -8,6 +8,11 @@ const navItems = [
   { label: "Dashboard", id: "dashboard" },
 ];
 
+const protectedNavItems = [
+  { label: "Dashboard", id: "dashboard", link: "/dashboard" },
+  { label: "Expenses", id: "expenses", link: "/expenses" },
+];
+
 function PublicNavbar() {
   const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
@@ -29,41 +34,70 @@ function PublicNavbar() {
       target.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
-
+  console.log(isAuthenticated);
   return (
     <nav className="navbar fixed top-0 z-50 w-full border-b border-base-300 bg-base-100/90 px-4 lg:px-10 backdrop-blur">
       <div className="navbar-start">
-        <Link to="/" className="btn btn-ghost text-xl font-black tracking-tight">
+        <Link
+          to="/"
+          className="btn btn-ghost text-xl font-black tracking-tight"
+        >
           Finance Intel
         </Link>
 
         <div className="dropdown lg:hidden">
           <div tabIndex={0} role="button" className="btn btn-ghost">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             </svg>
           </div>
-          <ul tabIndex={0} className="menu menu-sm dropdown-content z-50 mt-3 w-52 rounded-box bg-base-100 p-2 shadow">
-            {navItems.map((item) => (
-              <li key={item.id}>
-                <button type="button" onClick={() => goToSection(item.id)}>
-                  {item.label}
-                </button>
-              </li>
-            ))}
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content z-50 mt-3 w-52 rounded-box bg-base-100 p-2 gap-2 shadow"
+          >
+            {isAuthenticated
+              ? protectedNavItems.map((item) => (
+                  <Link key={item.id} to={item.link} className="btn">
+                    {item.label}
+                  </Link>
+                ))
+              : navItems.map((item) => (
+                  <li key={item.id}>
+                    <button type="button" onClick={() => goToSection(item.id)}>
+                      {item.label}
+                    </button>
+                  </li>
+                ))}
           </ul>
         </div>
       </div>
 
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal gap-1 px-1">
-          {navItems.map((item) => (
-            <li key={item.id}>
-              <button type="button" onClick={() => goToSection(item.id)}>
-                {item.label}
-              </button>
-            </li>
-          ))}
+          {isAuthenticated
+            ? protectedNavItems.map((item) => (
+                <Link key={item.id} to={item.link} className="btn btn-ghost text-[16px]">
+                  {item.label}
+                </Link>
+              ))
+            : navItems.map((item) => (
+                <li key={item.id}>
+                  <button type="button" onClick={() => goToSection(item.id)}>
+                    {item.label}
+                  </button>
+                </li>
+              ))}
         </ul>
       </div>
 

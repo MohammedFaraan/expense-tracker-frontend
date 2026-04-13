@@ -42,10 +42,11 @@ export default function ExpenseModel({
       const res = await updateExpense({ id: expense?.id, data });
       setExpense(res);
       toast.success("Expense updated!");
-      setIsEditing(false);
+      setIsEditing(false);      
     } catch (e) {
       toast.error("Update failed! " + e.message || "Network Error");
       console.error("Update Failed: ", e.message || "Network Error");
+      setIsEditing(false);
     }
   };
 
@@ -68,7 +69,7 @@ export default function ExpenseModel({
   const category = getCategory(expense?.category);
   return (
     <dialog open onClose={handleClose} className="modal">
-      <div className="modal-box max-w-[60%]">
+      <div className="modal-box max-w-[75%] md:max-w-[60%]">
         <div className="modal-header space-y-1">
           <h3 className="font-bold text-xl">Expense Details</h3>
           <p>

@@ -15,7 +15,7 @@ export default function SummarySection({ expenseStats }) {
         <div className="mt-2">
           <span className="text-2xl font-black text-gray-900">₹{total}</span>
           <p className="text-xs text-green-500 font-medium mt-1">
-            ↑ 12% from last month
+            ↑ 12% from last year
           </p>
         </div>
       </div>

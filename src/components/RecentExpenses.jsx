@@ -12,7 +12,7 @@ export default function RecentExpenses() {
     EXPENSE_CATEGORIES.filter((c) => c.id == categoryId)[0];
 
   return (
-    <div className="overflow-x-auto p-4 rounded-box bg-base-100 shadow-sm">
+    <div className="overflow-x-auto p-4 rounded-box bg-base-100 shadow-sm hover:shadow-md">
       <h3 className="text-lg font-bold mb-4 text-gray-800 text-left ">
         Recent Expenses
       </h3>
@@ -42,7 +42,6 @@ export default function RecentExpenses() {
                     </span>
                   </td>
                   <td>₹{expense.amount}</td>
-                  
                 </tr>
               );
             })
@@ -53,7 +52,14 @@ export default function RecentExpenses() {
           )}
         </tbody>
       </table>
-      <div className="text-center mt-4"><button className="btn btn-secondary" onClick={() => navigate("/expenses")}>View More</button></div>
+      <div className="text-center mt-6">
+        <button
+          className="btn btn-secondary"
+          onClick={() => navigate("/expenses")}
+        >
+          View More
+        </button>
+      </div>
     </div>
   );
 }

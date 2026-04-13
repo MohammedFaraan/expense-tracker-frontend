@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 export default function Sidebar() {
   return (
-    <div className="flex min-h-full flex-col items-start bg-base-200/70 is-drawer-close:w-14 is-drawer-open:w-64">
+    <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
       {/* Sidebar content here */}
 
       <ul className="menu w-full grow">

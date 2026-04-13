@@ -1,7 +1,4 @@
-import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 import { setLogoutHandler, setTokenProvider } from "../api/client";
 
 const AuthContext = createContext(null);
@@ -23,7 +20,7 @@ export default function AuthProvider({ children }) {
   const [user, setUser] = useState(getSavedUser);
   const [token, setToken] = useState(getSavedToken);
   const [isAuthenticated, setIsAuthenticated] = useState(
-    () => !!getSavedUser() && getSavedToken(),
+    () => !!getSavedUser() && !!getSavedToken(),
   );
 
   // Providing latest token to api client directly through state
