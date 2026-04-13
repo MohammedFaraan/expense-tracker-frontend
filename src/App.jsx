@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Expenses from "./pages/Expenses";
 import CreateExpense from "./pages/CreateExpense";
+import NotFoundPage from "./pages/NotFoudPage";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
             <Route path="/expenses" element={<Expenses />} />
             <Route path="/expenses/create" element={<CreateExpense />} />
           </Route>
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
       <Toaster />

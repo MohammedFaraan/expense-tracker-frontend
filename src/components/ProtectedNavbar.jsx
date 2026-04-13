@@ -27,11 +27,11 @@ export default function ProtectedNavbar() {
           <path d="M14 10l2 2l-2 2"></path>
         </svg>
       </label>
-      <div className="flex items-center">
+      <div className="flex items-center gap-2">
         <div className="px-2 btn btn-ghost font-bold text-xl">
         <span >Welcome back, {user?.name}!</span>
       </div>
-      <FaRegUserCircle />
+      <FaRegUserCircle className="btn btn-ghost btn-circle size-7 avatar" />
 
       </div>
       {/* <Link to="/dashboard" className="flex flex-row">
