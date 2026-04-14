@@ -60,9 +60,14 @@ export default function AuthProvider({ children }) {
     localStorage.removeItem("token");
   };
 
+  const updateUserInLocalStorage = (userData) => {
+    setUser(userData);
+
+    localStorage.setItem("user", JSON.stringify(userData));
+  };
   return (
     <AuthContext.Provider
-      value={{ login, signup, logout, user, token, isAuthenticated }}
+      value={{ login, signup, logout, user, token, isAuthenticated, updateUserInLocalStorage }}
     >
       {children}
     </AuthContext.Provider>

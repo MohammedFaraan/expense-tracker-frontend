@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { FaRegUserCircle } from "react-icons/fa";
+import {  FaUserCircle } from "react-icons/fa";
 
 export default function ProtectedNavbar() {
   const {user} = useAuth();
@@ -27,11 +28,13 @@ export default function ProtectedNavbar() {
           <path d="M14 10l2 2l-2 2"></path>
         </svg>
       </label>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 px-3">
         <div className="px-2 btn btn-ghost font-bold text-xl">
         <span >Welcome back, {user?.name}!</span>
       </div>
-      <FaRegUserCircle className="btn btn-ghost btn-circle size-7 avatar" />
+      <Link to="/profile">
+      <FaUserCircle  className="btn btn-ghost btn-circle text-secondary size-7 avatar" />
+      </Link>
 
       </div>
       {/* <Link to="/dashboard" className="flex flex-row">

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import heroImage from "../assets/hero-image1.svg";
+import heroImage from "../assets/hero-image.svg";
 import { LuWorkflow, LuSparkles } from "react-icons/lu";
 import { PiShieldCheckeredFill } from "react-icons/pi";
 import { Link } from "react-router-dom";

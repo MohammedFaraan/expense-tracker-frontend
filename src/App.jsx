@@ -12,6 +12,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Expenses from "./pages/Expenses";
 import CreateExpense from "./pages/CreateExpense";
 import NotFoundPage from "./pages/NotFoudPage";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -48,6 +49,8 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/expenses" element={<Expenses />} />
             <Route path="/expenses/create" element={<CreateExpense />} />
+            <Route path="/profile" element={<Profile />} />
+          
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
