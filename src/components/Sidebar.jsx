@@ -13,7 +13,7 @@ export default function Sidebar() {
   const { logout } = useAuth();
 
   return (
-    <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
+    <div className="flex min-h-screen flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
       {/* Sidebar content here */}
 
       <ul className="menu w-full grow font-semibold">
