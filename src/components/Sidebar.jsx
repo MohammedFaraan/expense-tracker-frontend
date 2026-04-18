@@ -27,7 +27,7 @@ export default function Sidebar() {
               <MdAccountBalanceWallet className="text-white text-xl" />
             </div>
             <span className="text-black font-bold text-xl is-drawer-close:hidden">
-              Finance Intel
+              FinTrackr
             </span>
           </Link>
         </li>

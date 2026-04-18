@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import {  FaUserCircle } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 
 export default function ProtectedNavbar() {
-  const {user} = useAuth();
+  const { user } = useAuth();
 
   return (
     <nav className="navbar w-full justify-between border-b border-base-300 bg-base-100/90  backdrop-blur">
@@ -30,18 +30,17 @@ export default function ProtectedNavbar() {
       </label>
       <div className="flex items-center gap-2 px-3">
         <div className="px-2 btn btn-ghost font-bold text-xl">
-        <span >Welcome back, {user?.name}!</span>
-      </div>
-      <Link to="/profile">
-      <FaUserCircle  className="btn btn-ghost btn-circle text-secondary size-7 avatar" />
-      </Link>
-
+          <span>Welcome back, {user?.name}!</span>
+        </div>
+        <Link to="/profile">
+          <FaUserCircle className="btn btn-ghost btn-circle text-secondary size-7 avatar" />
+        </Link>
       </div>
       {/* <Link to="/dashboard" className="flex flex-row">
         <div className="w-7 rounded p-1 bg-blue-500 mx-auto">
           <MdAccountBalanceWallet className="text-white text-xl" />
         </div>
-        <div className="px-2 text-black font-bold text-xl">Finance Intel</div>
+        <div className="px-2 text-black font-bold text-xl">FinTrackr</div>
       </Link> */}
     </nav>
   );

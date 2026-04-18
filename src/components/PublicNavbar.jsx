@@ -1,5 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { MdAccountBalanceWallet } from "react-icons/md";
 
 const navItems = [
   { label: "Features", id: "features" },
@@ -34,7 +35,7 @@ function PublicNavbar() {
       target.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
-  
+
   return (
     <nav className="navbar fixed top-0 z-50 w-full border-b border-base-300 bg-base-100/90 px-4 lg:px-10 backdrop-blur">
       <div className="navbar-start">
@@ -42,7 +43,10 @@ function PublicNavbar() {
           to="/"
           className="btn btn-ghost text-xl font-black tracking-tight"
         >
-          Finance Intel
+          <div className="w-7 rounded p-1 bg-blue-500">
+            <MdAccountBalanceWallet className="text-white text-xl" />
+          </div>
+          FinTrackr
         </Link>
 
         <div className="dropdown lg:hidden">
@@ -87,7 +91,11 @@ function PublicNavbar() {
         <ul className="menu menu-horizontal gap-1 px-1">
           {isAuthenticated
             ? protectedNavItems.map((item) => (
-                <Link key={item.id} to={item.link} className="btn btn-ghost text-[16px]">
+                <Link
+                  key={item.id}
+                  to={item.link}
+                  className="btn btn-ghost text-[16px]"
+                >
                   {item.label}
                 </Link>
               ))
