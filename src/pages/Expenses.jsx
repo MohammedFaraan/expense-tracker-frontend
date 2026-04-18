@@ -68,13 +68,13 @@ function Expenses() {
       <h1 className="text-4xl font-bold">All Expenses</h1>
       <SummarySection expenseStats={expenseStats} />
       <div className="flex flex-wrap items-center justify-between bg-base-200/50 p-3 rounded-box shadow-sm w-full gap-4">
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-row grow  gap-2">
           <input
             type="month"
             onChange={handleYearMonthSelect}
             className="input"
           />
-          <select defaultValue="all" className="select w-fit">
+          <select defaultValue="all" className="select">
             <option value="all">All categories</option>
 
             {EXPENSE_CATEGORIES &&
