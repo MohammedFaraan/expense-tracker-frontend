@@ -97,7 +97,7 @@ function Profile() {
   if (isError) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <p className="text-error">Failed to load profile. Please try again.</p>
+        <p className="text-error text-xl font-bold">Failed to load profile. Please try again.</p>
       </div>
     );
   }

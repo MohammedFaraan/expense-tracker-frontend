@@ -29,8 +29,8 @@ export default function ProtectedNavbar() {
         </svg>
       </label>
       <div className="flex items-center gap-2 px-3">
-        <div className="px-2 btn btn-ghost font-bold text-xl">
-          <span>Welcome back, {user?.name}!</span>
+        <div className="px-2 btn btn-ghost text-xl">
+          <span>Welcome back, <span className="text-secondary  font-bold">{user?.name}!</span></span>
         </div>
         <Link to="/profile">
           <FaUserCircle className="btn btn-ghost btn-circle text-secondary size-7 avatar" />

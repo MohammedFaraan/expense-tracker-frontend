@@ -69,7 +69,7 @@ export default function Sidebar() {
             className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-red-600 mt-5"
             data-tip="Logout"
           >
-            <MdOutlineLogout />
+            <MdOutlineLogout className="size-4" />
 
             <span className="is-drawer-close:hidden" onClick={logout}>Logout</span>
           </Link>

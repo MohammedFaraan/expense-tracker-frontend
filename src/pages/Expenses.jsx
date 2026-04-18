@@ -14,6 +14,7 @@ function Expenses() {
   const {
     expenses: allExpenses,
     isLoading,
+    isError,
     updateExpense,
     deleteExpense,
   } = useExpenses();
@@ -59,6 +60,14 @@ function Expenses() {
     return (
       <div className="flex justify-center items-center h-screen">
         <span className="loading loading-infinity text-info w-24"></span>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-error font-bold text-xl">Failed to load Expenses. Please try again.</p>
       </div>
     );
   }

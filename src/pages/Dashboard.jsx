@@ -6,13 +6,21 @@ import { useExpenses } from "../hooks/useExpenses";
 import { useExpensesStats } from "../hooks/useExpensesStats";
 
 function Dashboard() {
-  const { expenses, isLoading } = useExpenses();
+  const { expenses, isLoading, isError } = useExpenses();
   const { data: expenseStats } = useExpensesStats();
 
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
         <span className="loading loading-infinity text-info w-24"></span>
+      </div>
+    );
+  }
+
+   if (isError) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-error text-xl font-bold">Failed to load Dashboard. Please try again.</p>
       </div>
     );
   }
