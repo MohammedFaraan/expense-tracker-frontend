@@ -16,7 +16,7 @@ The frontend communicates with the [FinTrackr API](../expense-tracker-api) (Fast
 
 ## 🔗 Live Demo
 
-> 🚀 **Deployed on Vercel:** [https://fintrackr.vercel.app](https://fintrackr.vercel.app)
+> 🚀 **Deployed on Vercel:** [https://fin-trakr.vercel.app](https://fin-trakr.vercel.app)
 >
 > _Update the link above once deployed._
 
