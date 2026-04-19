@@ -41,7 +41,7 @@ function PublicNavbar() {
       <div className="navbar-start">
         <Link
           to="/"
-          className="btn btn-ghost text-xl font-black tracking-tight"
+          className="btn btn-ghost text-xl px-2 font-black tracking-tight"
         >
           <div className="w-7 rounded p-1 bg-blue-500">
             <MdAccountBalanceWallet className="text-white text-xl" />
@@ -116,7 +116,7 @@ function PublicNavbar() {
           </button>
         ) : (
           <>
-            <Link to="/login" className="btn btn-ghost">
+            <Link to="/login" className="btn btn-ghost hidden md:flex">
               Sign In
             </Link>
             <Link to="/signup" className="btn btn-secondary text-white">

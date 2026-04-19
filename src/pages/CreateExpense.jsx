@@ -29,12 +29,12 @@ function CreateExpense() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-10 mx-auto py-6 w-[95%]">
+    <div className="flex flex-col items-center justify-center gap-10 mx-auto py-6 md:w-[95%]">
       <h1 className="text-2xl font-bold">Create an Expense</h1>
 
       <form
         onSubmit={handleSubmit(handleAddExpense)}
-        className="shadow-[0_0_15px_rgba(0,0,0,0.1)] rounded-box w-md p-6 space-y-6"
+        className="shadow-[0_0_15px_rgba(0,0,0,0.1)] rounded-box w-sm md:w-md p-6 space-y-6"
       >
         <div className="space-y-2">
           <label className="label text-black font-medium">Amount</label>

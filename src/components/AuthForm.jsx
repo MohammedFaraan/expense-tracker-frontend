@@ -27,8 +27,9 @@ export default function AuthForm({ pageType }) {
       toast.success("Login successfull", { duration: 1500 });
       navigate("/");
     } catch (e) {
+      console.log(e.message)
       toast.error(
-        "Login failed! " + e.response?.data?.detail || "Network Error",
+        "Login failed! " + e.message || e.response?.data?.detail || "Network Error",
       );
       console.error("Login Failed: ", e.response?.data?.detail || e.message);
     }
