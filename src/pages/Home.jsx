@@ -259,18 +259,38 @@ function Home() {
           </div>
         </div>
       </section>
-      <footer className="flex items-center justify-between bg-base-200/70 px-6 py-6">
-        <div className="space-y-1">
-          <h2 className="font-bold text-xl">Finance Intel</h2>
-          <p>
-            &copy; {new Date().getFullYear()} Finance Intel. All rights reserved
-          </p>
-        </div>
-        <div className="flex gap-5 align-middle ">
-          <p>Privacy</p>
-          <p>Terms & Service</p>
-          <p>Cookie Policy</p>
-          <p>Contact Us</p>
+      <footer className="bg-base-200/70 px-6 py-8 lg:px-12">
+        <div className="mx-auto flex max-w-6xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <div className="space-y-1 text-left">
+            <h2 className="font-bold text-xl text-base-content">FinTrackr</h2>
+            <p className="text-sm text-base-content/70">
+              
+              &copy; {new Date().getFullYear()} FinTrackr. All rights reserved
+            </p>
+            <a
+              href="https://github.com/MohammedFaraan/"
+              target="_blank"
+              rel="noreferrer"
+              className="link link-hover text-sm text-base-content/70 font-medium"
+            >
+              Built with &#10084; by Faraan
+            </a>
+          </div>
+
+          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-base-content/70 md:justify-end">
+            <a className="link link-hover" href="#">
+              Privacy
+            </a>
+            <a className="link link-hover" href="#">
+              Terms &amp; Service
+            </a>
+            <a className="link link-hover" href="#">
+              Cookie Policy
+            </a>
+            <a className="link link-hover" href="#">
+              Contact Us
+            </a>
+          </nav>
         </div>
       </footer>
     </div>

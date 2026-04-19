@@ -60,8 +60,6 @@ The frontend communicates with the [FinTrackr API](../expense-tracker-api) (Fast
 
 ## 🖼️ Screenshots / UI Preview
 
-> _Add screenshots to a `screenshots/` directory and uncomment the lines below._
-
 ![Landing Page](./screenshots/home.png)
 ![Dashboard](./screenshots/dashboard.png)
 ![Expenses Page](./screenshots/expenses.png)
