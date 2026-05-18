@@ -10,7 +10,7 @@
 
 ### How It Connects to the Backend
 
-The frontend communicates with the [FinTrackr API](../expense-tracker-api) (FastAPI) via a centralized Axios client. All authenticated requests include a JWT Bearer token managed through React Context. Server state (expenses, stats, profile) is cached and synchronized using **TanStack React Query**.
+The frontend communicates with the [FinTrackr API](https://github.com/MohammedFaraan/expense-tracker-api) (FastAPI) via a centralized Axios client. All authenticated requests include a JWT Bearer token managed through React Context. Server state (expenses, stats, profile) is cached and synchronized using **TanStack React Query**.
 
 ---
 
